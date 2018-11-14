@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SendEmailWithFluentEmail.Code;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Net;
 using System.Net.Mail;
 
@@ -49,6 +51,8 @@ namespace SendEmailWithFluentEmail
             services.Configure<RequestLocalizationOptions>(options =>
             {
                 options.DefaultRequestCulture = new RequestCulture("pt-BR");
+                options.SupportedCultures = new List<CultureInfo> { new CultureInfo("pt-BR") };
+                options.RequestCultureProviders.Clear();
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

@@ -1,6 +1,7 @@
 ﻿using FluentEmail.Core;
 using Microsoft.AspNetCore.Mvc;
 using SendEmailWithFluentEmail.Models;
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
@@ -51,6 +52,26 @@ namespace SendEmailWithFluentEmail.Controllers
         public string GetCurrentCultureDate()
         {
             return System.DateTime.Now.ToString();
+        }
+
+        [HttpGet]
+        public string GetCurrentCultureDateUtcNow()
+        {
+            return System.DateTime.UtcNow.ToString();
+        }
+
+        [HttpGet]
+        public string GetCurrentCultureDateToLocalTime()
+        {
+            DateTimeOffset do1 = new DateTimeOffset(2008, 8, 22, 1, 0, 0, new TimeSpan(-5, 0, 0));
+
+            return System.DateTime.Now.ToLocalTime().ToString();
+        }
+
+        [HttpGet]
+        public DateTime GmtToBrazilEast()
+        {
+            return TimeZoneInfo.ConvertTimeFromUtc(System.DateTime.UtcNow, TimeZoneInfo.FindSystemTimeZoneById("E. South America Standard Time"));
         }
 
         public IActionResult Index()
