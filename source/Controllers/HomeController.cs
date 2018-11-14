@@ -47,6 +47,12 @@ namespace SendEmailWithFluentEmail.Controllers
             return View();
         }
 
+        [HttpGet]
+        public string GetCurrentCultureDate()
+        {
+            return System.DateTime.Now.ToString();
+        }
+
         public IActionResult Index()
         {
             return View();
